@@ -1,0 +1,39 @@
+pipeline:
+
+  build:
+    image: docker:stable
+    environment:
+      - DOCKER_HOST=tcp://127.0.0.1:2375
+      - DOCKER_IMAGE=lev-deploy
+    commands:
+      - docker build -t "${DOCKER_IMAGE}:${DRONE_BUILD_NUMBER}" .
+    when:
+      branch: master
+      event: [pull_request, push]
+
+  push_image:
+    image: docker:stable
+    environment:
+      - DOCKER_HOST=tcp://127.0.0.1:2375
+      - DOCKER_REPO=quay.io
+      - DOCKER_BASEDIR=/ukhomeofficedigital/
+      - DOCKER_USERNAME=ukhomeofficedigital+lev-deploy
+      - DOCKER_IMAGE=lev-deploy
+    commands:
+      - IMAGE="${DOCKER_REPO}${DOCKER_BASEDIR}${DOCKER_IMAGE}"
+      - docker login -u="${DOCKER_USERNAME}" -p="${DOCKER_PASSWORD}" "${DOCKER_REPO}"
+      - docker tag "${DOCKER_IMAGE}:${DRONE_BUILD_NUMBER}" "${IMAGE}:${DRONE_TAG}"
+      - docker tag "${DOCKER_IMAGE}:${DRONE_BUILD_NUMBER}" "${IMAGE}:latest"
+      - docker push "${IMAGE}:${DRONE_TAG}"
+      - docker push "${IMAGE}:latest"
+    when:
+      branch: master
+      event: push
+
+services:
+  dind:
+    image: docker:stable-dind
+    privileged: true
+    command:
+      - "-s"
+      - "overlay"
