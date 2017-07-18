@@ -9,7 +9,7 @@ pipeline:
       - docker build -t "${DOCKER_IMAGE}:${DRONE_BUILD_NUMBER}" .
     when:
       branch: master
-      event: [pull_request, push]
+      event: [pull_request, tag]
 
   push_image:
     image: docker:stable
@@ -28,7 +28,7 @@ pipeline:
       - docker push "${IMAGE}:latest"
     when:
       branch: master
-      event: push
+      event: tag
 
 services:
   dind:
