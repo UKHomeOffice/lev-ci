@@ -1,6 +1,6 @@
 pipeline:
 
-  build:
+  build_latest:
     image: docker:stable
     environment:
       - DOCKER_HOST=tcp://127.0.0.1:2375
@@ -9,9 +9,19 @@ pipeline:
       - docker build -t "${DOCKER_IMAGE}:${DRONE_BUILD_NUMBER}" .
     when:
       branch: master
-      event: [pull_request, push, tag]
+      event: push
 
-  push_image:
+  build_other:
+    image: docker:stable
+    environment:
+      - DOCKER_HOST=tcp://127.0.0.1:2375
+      - DOCKER_IMAGE=lev-deploy
+    commands:
+      - docker build -t "${DOCKER_IMAGE}:${DRONE_BUILD_NUMBER}" .
+    when:
+      event: [pull_request, tag]
+
+  push_image_latest:
     image: docker:stable
     environment:
       - DOCKER_HOST=tcp://127.0.0.1:2375
@@ -21,13 +31,30 @@ pipeline:
       - DOCKER_IMAGE=lev-deploy
     commands:
       - IMAGE="${DOCKER_REPO}${DOCKER_BASEDIR}${DOCKER_IMAGE}"
-      - TAG="${DRONE_TAG:-latest}"
+      - TAG="latest"
       - docker login -u="${DOCKER_USERNAME}" -p="${DOCKER_PASSWORD}" "${DOCKER_REPO}"
       - docker tag "${DOCKER_IMAGE}:${DRONE_BUILD_NUMBER}" "${IMAGE}:${TAG}"
       - docker push "${IMAGE}:${TAG}"
     when:
       branch: master
-      event: [push, tag]
+      event: push
+
+  push_image_tag:
+    image: docker:stable
+    environment:
+      - DOCKER_HOST=tcp://127.0.0.1:2375
+      - DOCKER_REPO=quay.io
+      - DOCKER_BASEDIR=/ukhomeofficedigital/
+      - DOCKER_USERNAME=ukhomeofficedigital+lev_deploy_robot
+      - DOCKER_IMAGE=lev-deploy
+    commands:
+      - IMAGE="${DOCKER_REPO}${DOCKER_BASEDIR}${DOCKER_IMAGE}"
+      - TAG="${DRONE_TAG}"
+      - docker login -u="${DOCKER_USERNAME}" -p="${DOCKER_PASSWORD}" "${DOCKER_REPO}"
+      - docker tag "${DOCKER_IMAGE}:${DRONE_BUILD_NUMBER}" "${IMAGE}:${TAG}"
+      - docker push "${IMAGE}:${TAG}"
+    when:
+      event: tag
 
 services:
   dind:
