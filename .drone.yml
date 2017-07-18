@@ -9,7 +9,7 @@ pipeline:
       - docker build -t "${DOCKER_IMAGE}:${DRONE_BUILD_NUMBER}" .
     when:
       branch: master
-      event: [pull_request, tag]
+      event: [pull_request, push, tag]
 
   push_image:
     image: docker:stable
@@ -21,14 +21,13 @@ pipeline:
       - DOCKER_IMAGE=lev-deploy
     commands:
       - IMAGE="${DOCKER_REPO}${DOCKER_BASEDIR}${DOCKER_IMAGE}"
+      - TAG="${DRONE_TAG:-latest}"
       - docker login -u="${DOCKER_USERNAME}" -p="${DOCKER_PASSWORD}" "${DOCKER_REPO}"
-      - docker tag "${DOCKER_IMAGE}:${DRONE_BUILD_NUMBER}" "${IMAGE}:${DRONE_TAG}"
-      - docker tag "${DOCKER_IMAGE}:${DRONE_BUILD_NUMBER}" "${IMAGE}:latest"
-      - docker push "${IMAGE}:${DRONE_TAG}"
-      - docker push "${IMAGE}:latest"
+      - docker tag "${DOCKER_IMAGE}:${DRONE_BUILD_NUMBER}" "${IMAGE}:${TAG}"
+      - docker push "${IMAGE}:${TAG}"
     when:
       branch: master
-      event: tag
+      event: [push, tag]
 
 services:
   dind:
