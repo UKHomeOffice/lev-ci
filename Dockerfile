@@ -1,4 +1,4 @@
-FROM quay.io/ukhomeofficedigital/kd:v0.2.4
+FROM quay.io/ukhomeofficedigital/kd:v0.5.0
 
 RUN apk add -q --no-cache \
   coreutils \
