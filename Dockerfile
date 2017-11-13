@@ -4,5 +4,6 @@ RUN apk add -q --no-cache \
   coreutils \
   curl \
   docker \
+  git \
   grep \
   jq
