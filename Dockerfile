@@ -15,6 +15,7 @@ RUN apk add -q --no-cache \
   jq \
   make \
   openssl \
+  python \
   sed
 
 RUN wget "https://storage.googleapis.com/kubernetes-release/release/v${KUBECTL_VERSION}/bin/linux/amd64/kubectl" -O "/usr/bin/kubectl" \
