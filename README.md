@@ -1,6 +1,4 @@
-LEV Deployment Image
-====================
+LEV Continuous Integration Docker Image
+=======================================
 
-A docker image used for deploying the Life Event Verification service.
-
-In the future this may form the basis of a generic Kubernetes deployment image.
+A docker image used for building and deploying the Life Event Verification service.
