@@ -25,7 +25,7 @@ pipeline:
     repo: '${DOCKER_REPO}/${NAME}'
     registry: '${DOCKER_REPO}'
     tags:
-      - '${MAJOR}.${MINOR}.${PATCH}-${DRONE_JOB_NUMBER}-${DRONE_COMMIT:0:10}'
+      - '${MAJOR}.${MINOR}.${PATCH}-${DRONE_BUILD_NUMBER}-${DRONE_COMMIT:0:10}'
       - '${MAJOR}.${MINOR}.${PATCH}'
       - '${MAJOR}.${MINOR}'
       - '${MAJOR}'
