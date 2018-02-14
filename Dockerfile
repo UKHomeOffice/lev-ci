@@ -26,4 +26,4 @@ RUN wget -q "https://storage.googleapis.com/kubernetes-release/release/v${KUBECT
  && chmod +x "/usr/bin/kd"
 
 
-ENTRYPOINT ["bash"]
+CMD ["bash"]
