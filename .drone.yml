@@ -2,11 +2,11 @@ matrix:
   NAME:
     - ukhomeofficedigital/lev-ci
   MAJOR:
-    - 0
-  MINOR:
     - 1
-  PATCH:
+  MINOR:
     - 0
+  PATCH:
+    - 2
   DOCKER_USERNAME:
     - ukhomeofficedigital+lev_ci
   DOCKER_REPO:
