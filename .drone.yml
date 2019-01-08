@@ -2,7 +2,7 @@ matrix:
   NAME:
     - ukhomeofficedigital/lev-ci
   MAJOR:
-    - 0
+    - 1
   MINOR:
     - 1
   PATCH:
