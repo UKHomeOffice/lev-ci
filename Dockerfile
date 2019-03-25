@@ -15,6 +15,7 @@ RUN apk add -q --no-cache \
   grep \
   jq \
   make \
+  maven \
   openjdk8 \
   openssl \
   py-pip \
