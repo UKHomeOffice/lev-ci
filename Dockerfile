@@ -10,6 +10,7 @@ RUN apk add -q --no-cache \
   coreutils \
   curl \
   docker \
+  gettext \
   git \
   grep \
   jq \
