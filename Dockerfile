@@ -15,12 +15,10 @@ RUN apk add -q --no-cache \
   grep \
   jq \
   make \
-  openjdk8 \
   openssl \
   py3-pip \
   py3-paramiko \
   sed \
-  openjdk8 \
  && pip3 install -q docker-compose
 
 RUN wget -q "https://storage.googleapis.com/kubernetes-release/release/v${KUBECTL_VERSION}/bin/linux/amd64/kubectl" -O "/usr/bin/kubectl" \
