@@ -19,7 +19,6 @@ RUN apk add -q --no-cache \
   py-pip \
   python \
   sed \
-  gnupg \
   maven \
   nss \
   openjdk8 \
