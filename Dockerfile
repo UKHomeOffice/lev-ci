@@ -16,15 +16,15 @@ RUN apk add -q --no-cache \
   jq \
   make \
   openssl \
-  py-pip \
-  python \
+  py3-pip \
+  py3-paramiko \
   sed \
   gnupg \
   maven \
   nss \
   openjdk8 \
   zip \
- && pip install -q docker-compose
+ && pip3 install -q docker-compose
 
 RUN wget -q "https://storage.googleapis.com/kubernetes-release/release/v${KUBECTL_VERSION}/bin/linux/amd64/kubectl" -O "/usr/bin/kubectl" \
  && wget -q "https://github.com/UKHomeOffice/kd/releases/download/v${KD_VERSION}/kd_linux_amd64" -O "/usr/bin/kd" \
