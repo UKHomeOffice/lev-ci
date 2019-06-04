@@ -26,5 +26,6 @@ RUN wget -q "https://storage.googleapis.com/kubernetes-release/release/v${KUBECT
  && chmod +x "/usr/bin/kubectl" \
  && chmod +x "/usr/bin/kd"
 
+COPY get-package-details.sh /get-package-details.sh
 
 CMD ["bash"]
