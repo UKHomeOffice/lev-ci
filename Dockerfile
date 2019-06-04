@@ -19,7 +19,6 @@ RUN apk add -q --no-cache \
   py3-pip \
   py3-paramiko \
   sed \
-  gnupg \
   maven \
   nss \
   openjdk8 \
