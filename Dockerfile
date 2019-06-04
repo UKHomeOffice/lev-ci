@@ -15,13 +15,11 @@ RUN apk add -q --no-cache \
   grep \
   jq \
   make \
-  maven \
   openjdk8 \
   openssl \
   py3-pip \
   py3-paramiko \
   sed \
-  maven \
   openjdk8 \
  && pip3 install -q docker-compose
 
