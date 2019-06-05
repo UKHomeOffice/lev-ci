@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 export VERSION=`cat package.json | jq -r '.version'`
 export MAJOR=`echo -n "${VERSION}" | awk -F '.' '{print $1}'`
