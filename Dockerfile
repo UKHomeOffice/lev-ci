@@ -21,11 +21,13 @@ RUN apk add -q --no-cache \
   sed \
  && pip3 install -q docker-compose
 
+COPY get-package-details.sh /usr/bin/get-package-details
+COPY set-tags.sh /usr/bin/set-tags
+
 RUN wget -q "https://storage.googleapis.com/kubernetes-release/release/v${KUBECTL_VERSION}/bin/linux/amd64/kubectl" -O "/usr/bin/kubectl" \
  && wget -q "https://github.com/UKHomeOffice/kd/releases/download/v${KD_VERSION}/kd_linux_amd64" -O "/usr/bin/kd" \
  && chmod +x "/usr/bin/kubectl" \
- && chmod +x "/usr/bin/kd"
-
-COPY get-package-details.sh /get-package-details.sh
+ && chmod +x "/usr/bin/kd" \
+ && printf '\nsource /usr/bin/get-package-details\n' >> /root/.bashrc
 
 CMD ["bash"]
