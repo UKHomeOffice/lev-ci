@@ -1,6 +1,5 @@
 FROM node:8-alpine
 
-ENV KD_VERSION=1.12.1
 ENV KUBECTL_VERSION=1.10.11
 
 RUN apk upgrade -q --no-cache
@@ -25,9 +24,7 @@ COPY get-package-details.sh /usr/bin/get-package-details
 COPY set-tags.sh /usr/bin/set-tags
 
 RUN wget -q "https://storage.googleapis.com/kubernetes-release/release/v${KUBECTL_VERSION}/bin/linux/amd64/kubectl" -O "/usr/bin/kubectl" \
- && wget -q "https://github.com/UKHomeOffice/kd/releases/download/v${KD_VERSION}/kd_linux_amd64" -O "/usr/bin/kd" \
  && chmod +x "/usr/bin/kubectl" \
- && chmod +x "/usr/bin/kd" \
  && printf '\nsource /usr/bin/get-package-details\n' >> /root/.bashrc
 
 CMD ["bash"]
