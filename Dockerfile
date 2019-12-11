@@ -18,7 +18,8 @@ RUN apk add -q --no-cache \
   py3-pip \
   py3-paramiko \
   sed \
- && pip3 install -q docker-compose
+ && pip3 install -q docker-compose \
+ && cd /usr/bin && ln -s python3 python
 
 COPY get-package-details.sh /usr/bin/get-package-details
 COPY set-tags.sh /usr/bin/set-tags
