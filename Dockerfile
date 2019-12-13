@@ -17,9 +17,9 @@ RUN apk add -q --no-cache \
   openssl \
   py3-pip \
   py3-paramiko \
+  python \
   sed \
- && pip3 install -q docker-compose \
- && cd /usr/bin && ln -s python3 python
+ && pip3 install -q docker-compose
 
 COPY get-package-details.sh /usr/bin/get-package-details
 COPY set-tags.sh /usr/bin/set-tags
