@@ -1,4 +1,4 @@
-FROM node:8-alpine
+FROM node:12-alpine
 
 ENV KUBECTL_VERSION=1.13.4
 
