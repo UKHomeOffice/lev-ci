@@ -15,6 +15,7 @@ RUN apk add -q --no-cache \
   jq \
   make \
   openssl \
+  perl-xml-xpath \
   py3-pip \
   py3-paramiko \
   python \
