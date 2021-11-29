@@ -10,7 +10,11 @@ platform:
 steps:
 - name: docker-build
   pull: if-not-exists
-  image: ukhomeoffice/drone-docker
+  image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
+  commands:
+    # wait for docker service to be up before running docker build
+    - n=0; while [ "$n" -lt 60 ] && [ ! docker stats --no-stream ]; do n=$(( n + 1 )); sleep 1; done
+    - docker build -t test .
   settings:
     dry_run: true
     repo: quay.io/ukhomeofficedigital/lev-ci
@@ -30,7 +34,7 @@ steps:
     - 3.5
     - 3
     - latest
-    username: ukhomeofficedigital+lev_ci
+    username: lev_ci
   environment:
     DOCKER_PASSWORD:
       from_secret: docker_password
@@ -40,4 +44,7 @@ steps:
     event:
     - push
 
+services:
+  - name: docker
+    image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
 ...
