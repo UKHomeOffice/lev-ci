@@ -18,7 +18,7 @@ RUN apk add -q --no-cache \
   perl-xml-xpath \
   py3-pip \
   py3-paramiko \
-  python \
+  python3 \
   sed \
  && pip3 install -q docker-compose
 
