@@ -1,6 +1,7 @@
 ---
 kind: pipeline
 name: matrix-1
+type: kubernetes
 
 platform:
   os: linux
