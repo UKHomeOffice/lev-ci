@@ -10,11 +10,7 @@ platform:
 steps:
 - name: docker-build
   pull: if-not-exists
-  image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
-  commands:
-    # wait for docker service to be up before running docker build
-    - n=0; while [ "$n" -lt 60 ] && [ ! docker stats --no-stream ]; do n=$(( n + 1 )); sleep 1; done
-    - docker build -t test .
+  image: plugins/docker
   settings:
     dry_run: true
     repo: quay.io/ukhomeofficedigital/lev-ci
@@ -29,10 +25,8 @@ steps:
     registry: quay.io
     repo: quay.io/ukhomeofficedigital/lev-ci
     tags:
-    - 3.5.1-${DRONE_BUILD_NUMBER}-${DRONE_COMMIT:0:10}
-    - 3.5.1
-    - 3.5
-    - 3
+    - 3.5.2-${DRONE_BUILD_NUMBER}-${DRONE_COMMIT:0:10}
+    - 3.5.2
     - latest
     username: lev_ci
   environment:
@@ -44,7 +38,4 @@ steps:
     event:
     - push
 
-services:
-  - name: docker
-    image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
 ...
