@@ -1,35 +1,41 @@
-matrix:
-  NAME:
-    - ukhomeofficedigital/lev-ci
-  MAJOR:
-    - 3
-  MINOR:
-    - 5
-  PATCH:
-    - 1
-  DOCKER_USERNAME:
-    - ukhomeofficedigital+lev_ci
-  DOCKER_REPO:
-    - quay.io
-pipeline:
-  docker-build:
-    image: ukhomeoffice/drone-docker
-    repo: '${DOCKER_REPO}/${NAME}'
+---
+kind: pipeline
+name: matrix-1
+type: kubernetes
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+- name: docker-build
+  pull: if-not-exists
+  image: plugins/docker
+  settings:
     dry_run: true
-    when:
-      event: pull_request
-  docker-build-and-push:
-    image: ukhomeoffice/drone-docker
-    secrets: [ docker_password ]
-    username: '${DOCKER_USERNAME}'
-    repo: '${DOCKER_REPO}/${NAME}'
-    registry: '${DOCKER_REPO}'
+    repo: quay.io/ukhomeofficedigital/lev-ci
+  when:
+    event:
+    - pull_request
+
+- name: docker-build-and-push
+  pull: if-not-exists
+  image: plugins/docker
+  settings:
+    registry: quay.io
+    repo: quay.io/ukhomeofficedigital/lev-ci
     tags:
-      - '${MAJOR}.${MINOR}.${PATCH}-${DRONE_BUILD_NUMBER}-${DRONE_COMMIT:0:10}'
-      - '${MAJOR}.${MINOR}.${PATCH}'
-      - '${MAJOR}.${MINOR}'
-      - '${MAJOR}'
-      - 'latest'
-    when:
-      event: push
-      branch: master
+    - 3.5.2-${DRONE_BUILD_NUMBER}-${DRONE_COMMIT:0:10}
+    - 3.5.2
+    - latest
+    username: lev_ci
+  environment:
+    DOCKER_PASSWORD:
+      from_secret: docker_password
+  when:
+    branch:
+    - master
+    event:
+    - push
+
+...
