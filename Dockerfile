@@ -2,6 +2,7 @@ FROM node:12-alpine
 
 ENV KUBECTL_VERSION=1.19.15
 
+RUN apk update
 RUN apk upgrade --no-cache
 RUN apk add --no-cache \
   bash \
