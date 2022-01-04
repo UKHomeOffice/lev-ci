@@ -2,8 +2,8 @@ FROM node:12-alpine
 
 ENV KUBECTL_VERSION=1.19.15
 
-RUN apk upgrade -q --no-cache
-RUN apk add -q --no-cache \
+RUN apk upgrade --no-cache
+RUN apk add --no-cache \
   bash \
   ca-certificates \
   coreutils \
