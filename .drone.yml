@@ -1,6 +1,6 @@
 ---
 kind: pipeline
-name: matrix-1
+name: default
 type: kubernetes
 
 platform:
@@ -25,8 +25,8 @@ steps:
     registry: quay.io
     repo: quay.io/ukhomeofficedigital/lev-ci
     tags:
-    - 3.5.2-${DRONE_BUILD_NUMBER}-${DRONE_COMMIT:0:10}
-    - 3.5.2
+    - 3.5.3-${DRONE_BUILD_NUMBER}-${DRONE_COMMIT:0:10}
+    - 3.5.3
     - latest
     username: ukhomeofficedigital+lev_ci
   environment:

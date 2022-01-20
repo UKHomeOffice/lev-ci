@@ -2,8 +2,7 @@ FROM node:12-alpine
 
 ENV KUBECTL_VERSION=1.19.15
 
-RUN apk upgrade -q --no-cache
-RUN apk add -q --no-cache \
+RUN apk add --no-cache \
   bash \
   ca-certificates \
   coreutils \
@@ -20,6 +19,7 @@ RUN apk add -q --no-cache \
   py3-paramiko \
   python3 \
   sed \
+ && apk upgrade --no-cache \
  && pip3 install -q docker-compose
 
 COPY get-package-details.sh /usr/bin/get-package-details
