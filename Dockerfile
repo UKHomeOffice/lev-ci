@@ -19,7 +19,7 @@ RUN apk add --no-cache \
   py3-paramiko \
   python3 \
   sed \
- && apk upgrade --no-cache
+ && apk upgrade --no-cache \
  && pip3 install -q docker-compose
 
 COPY get-package-details.sh /usr/bin/get-package-details
