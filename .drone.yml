@@ -27,7 +27,7 @@ steps:
     tags:
 #    - '3.5.3-${DRONE_BUILD_NUMBER}-${DRONE_COMMIT:0:10}'
 #    - '3.5.3'
-    - '12-alpine3.12'
+    - '12-alpine3.11'
 #    - 'latest'
     username: ukhomeofficedigital+lev_ci
   environment:

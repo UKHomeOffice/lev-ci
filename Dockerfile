@@ -1,4 +1,4 @@
-FROM node:12-alpine3.12
+FROM node:12-alpine3.11
 
 ENV KUBECTL_VERSION=1.19.15
 
