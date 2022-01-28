@@ -18,12 +18,11 @@ RUN apt-get install -y \
   make \
   openssl \
   wget \
-#  perl-xml-xpath \
   python3-pip \
   python3-paramiko \
   python3 \
   sed
-# && apk upgrade --no-cache \
+
 RUN pip3 install --upgrade setuptools
 RUN pip3 install --upgrade pip
 RUN pip3 install -q docker-compose
