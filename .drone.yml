@@ -25,9 +25,10 @@ steps:
     registry: quay.io
     repo: quay.io/ukhomeofficedigital/lev-ci
     tags:
-    - 3.5.3-${DRONE_BUILD_NUMBER}-${DRONE_COMMIT:0:10}
-    - 3.5.3
-    - latest
+#    - 3.5.3-${DRONE_BUILD_NUMBER}-${DRONE_COMMIT:0:10}
+#    - 3.5.3
+#    - latest
+    - '12-non-alpine'
     username: ukhomeofficedigital+lev_ci
   environment:
     DOCKER_PASSWORD:
