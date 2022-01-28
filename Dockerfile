@@ -19,12 +19,15 @@ RUN apt-get install -y \
   openssl \
   wget \
 #  perl-xml-xpath \
-#  py3-pip \
-#  py3-paramiko \
+  python3-pip \
+  python3-paramiko \
   python3 \
   sed
 # && apk upgrade --no-cache \
-# && pip3 install -q docker-compose
+RUN pip3 install --upgrade setuptools
+RUN pip3 install --upgrade pip
+RUN pip3 install -q docker-compose
+
 
 COPY get-package-details.sh /usr/bin/get-package-details
 COPY set-tags.sh /usr/bin/set-tags
