@@ -22,11 +22,13 @@ RUN apt-get install -y \
   python3-paramiko \
   python3 \
   sed
+RUN apt-get upgrade -y
 
 RUN pip3 install --upgrade setuptools
 RUN pip3 install --upgrade pip
 RUN pip3 install -q docker-compose
 
+RUN apt-get upgrade -y
 
 COPY get-package-details.sh /usr/bin/get-package-details
 COPY set-tags.sh /usr/bin/set-tags
