@@ -24,7 +24,6 @@ RUN apk add --no-cache \
 
 COPY get-package-details.sh /usr/bin/get-package-details
 COPY set-tags.sh /usr/bin/set-tags
-COPY Makefile-report .
 
 RUN wget -q "https://storage.googleapis.com/kubernetes-release/release/v${KUBECTL_VERSION}/bin/linux/amd64/kubectl" -O "/usr/bin/kubectl" \
  && chmod +x "/usr/bin/kubectl" \
