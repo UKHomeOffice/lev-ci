@@ -1,11 +1,9 @@
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 
 ENV KUBECTL_VERSION=1.19.15
+ENV DEBIAN_FRONTEND noninteractive
 
-RUN apt-get update -y
-RUN apt-get upgrade -y
-
-RUN apt-get install -y \
+RUN apt-get update && apt-get upgrade -y && apt-get install -y \
   bash \
   ca-certificates \
   coreutils \
@@ -17,13 +15,13 @@ RUN apt-get install -y \
   jq \
   make \
   nodejs \
+  npm \
   openssl \
   wget \
   python3-pip \
   python3-paramiko \
   python3 \
   sed
-RUN apt-get upgrade -y
 
 RUN pip3 install --upgrade setuptools
 RUN pip3 install --upgrade pip
