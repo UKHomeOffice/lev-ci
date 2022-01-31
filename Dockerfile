@@ -10,7 +10,7 @@ RUN apt-get install -y \
   ca-certificates \
   coreutils \
   curl \
-  docker \
+  docker.io \
   gettext \
   git \
   grep \
