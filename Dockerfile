@@ -1,4 +1,4 @@
-FROM node:16
+FROM ubuntu:18.04
 
 ENV KUBECTL_VERSION=1.19.15
 
