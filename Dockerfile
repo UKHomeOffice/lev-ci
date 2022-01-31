@@ -17,6 +17,7 @@ RUN apt-get install -y \
   jq \
   make \
   nodejs \
+  npm \
   openssl \
   wget \
   python3-pip \
