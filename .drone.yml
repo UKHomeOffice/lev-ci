@@ -25,10 +25,9 @@ steps:
     registry: quay.io
     repo: quay.io/ukhomeofficedigital/lev-ci
     tags:
-#    - 3.5.4-${DRONE_BUILD_NUMBER}-${DRONE_COMMIT:0:10}
-#    - 3.5.4
+    - 3.5.5-${DRONE_BUILD_NUMBER}-${DRONE_COMMIT:0:10}
+    - 3.5.5
     - latest
-    - 3.5.5-ubuntu-test
     username: ukhomeofficedigital+lev_ci
   environment:
     DOCKER_PASSWORD:
