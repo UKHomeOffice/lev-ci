@@ -14,6 +14,7 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y \
   git \
   grep \
   jq \
+  libxml-xpath-perl \
   make \
   npm \
   openssl \
