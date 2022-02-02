@@ -35,5 +35,6 @@ COPY set-tags.sh /usr/bin/set-tags
 RUN wget -q "https://storage.googleapis.com/kubernetes-release/release/v${KUBECTL_VERSION}/bin/linux/amd64/kubectl" -O "/usr/bin/kubectl" \
  && chmod +x "/usr/bin/kubectl" \
  && printf '\nsource /usr/bin/get-package-details\n' >> /root/.bashrc
+RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
 CMD ["bash"]
