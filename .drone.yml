@@ -28,7 +28,7 @@ steps:
 #    - 3.5.5-${DRONE_BUILD_NUMBER}-${DRONE_COMMIT:0:10}
 #    - 3.5.5
 #    - latest
-      - node-test
+    - node-test
     username: ukhomeofficedigital+lev_ci
   environment:
     DOCKER_PASSWORD:
@@ -37,6 +37,6 @@ steps:
     branch:
     - master
     event:
-    - pull_request
+    - push
 
 ...
