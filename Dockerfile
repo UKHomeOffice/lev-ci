@@ -25,14 +25,17 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y \
   sed
 
 RUN curl -sL https://deb.nodesource.com/setup_$NODE_VERSION.x | bash - && \
-  	apt-get install -y nodejs \
-&& pip3 install --upgrade setuptools pip docker-compose \
-&& wget -q "https://storage.googleapis.com/kubernetes-release/release/v${KUBECTL_VERSION}/bin/linux/amd64/kubectl" -O "/usr/bin/kubectl" \
-&& chmod +x "/usr/bin/kubectl" \
-&& printf '\nsource /usr/bin/get-package-details\n' >> /root/.bashrc \
-&& rm /bin/sh && ln -s /bin/bash /bin/sh
+  	apt-get install -y nodejs
+RUN pip3 install --upgrade setuptools
+RUN pip3 install --upgrade pip
+RUN pip3 install -q docker-compose
 
 COPY get-package-details.sh /usr/bin/get-package-details
 COPY set-tags.sh /usr/bin/set-tags
+
+RUN wget -q "https://storage.googleapis.com/kubernetes-release/release/v${KUBECTL_VERSION}/bin/linux/amd64/kubectl" -O "/usr/bin/kubectl" \
+ && chmod +x "/usr/bin/kubectl" \
+ && printf '\nsource /usr/bin/get-package-details\n' >> /root/.bashrc
+RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
 CMD ["bash"]
